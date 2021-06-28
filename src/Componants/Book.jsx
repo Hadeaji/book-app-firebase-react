@@ -1,6 +1,11 @@
 import React from "react";
+import {  Link } from "react-router-dom";
 
-const Book = ({details}) =>{
+
+const Book = ({details, setBookId}) =>{
+
+    
+
     let imageSrc;
     let title;
     let author;
@@ -22,13 +27,17 @@ const Book = ({details}) =>{
     }catch{
         author = "Unknown";
     }
-
+   
     return(
+        
+        
         <div>
             <img src={`${imageSrc}`} alt="" />
             <p>{`${title}`}</p>
             <p>{`${author}`}</p>
+            <Link onClick={()=>setBookId(`${details.id}`)} to='/details'>More Details</Link>
         </div>
+        
     )
     
 }

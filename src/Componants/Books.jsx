@@ -16,7 +16,7 @@ const getBooks = async ({queryKey}) => {
     return data.json()
 }
 
-const Books = ({searchQuery}) =>{
+const Books = ({searchQuery, setBookId}) =>{
     const [startPoint , setStartPoint] = useState(0);
     const query = ["books", searchQuery , startPoint];
     const {data , isLoading , isError, error} = useQuery( query , getBooks);
@@ -40,7 +40,7 @@ const Books = ({searchQuery}) =>{
         return(
             <div>
                 {data.items.map(book =>{
-                    return(<div key={book.id}> <Book details={book} /> </div>)
+                    return(<div key={book.id}> <Book setBookId={setBookId} details={book} /> </div>)
                 })}
 
                 <button onClick={()=>{setStartPoint(Math.max(startPoint -10, 0))}} disabled={startPoint===0}>Prev</button>
