@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Book from "./Book.jsx";
+import Home from "./Home.jsx";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+import Details from "./Details.jsx"
 
 const getBooks = async ({queryKey}) => {
     const [key , searchQuery , startPoint] = queryKey;
@@ -39,13 +47,20 @@ const Books = ({searchQuery}) =>{
 
         return(
             <div>
-                {data.items.map(book =>{
-                    return(<div key={book.id}> <Book details={book} /> </div>)
-                })}
+            <Router>
 
-                <button onClick={()=>{setStartPoint(Math.max(startPoint -10, 0))}} disabled={startPoint===0}>Prev</button>
-                <span>#{`${Math.floor(startPoint/10)+1}`}</span>
-                <button onClick={()=>{setStartPoint(Math.min(startPoint +10, Math.ceil(data.totalItems)))}} disabled={startPoint>=(Math.ceil((data.totalItems-10)/10)*10)} >Next</button>
+                <Switch>
+                    <Route exact path="/">
+                        <Home date={data,} />
+                    </Route>
+                    
+                    <Route path="/:Details">
+                        <Details />
+                    </Route>
+                </Switch>
+
+
+            </Router>
             </div>
 
                 

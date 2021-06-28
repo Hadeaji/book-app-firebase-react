@@ -1,4 +1,10 @@
 import React from "react";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 const Book = ({details}) =>{
     let imageSrc;
@@ -28,6 +34,7 @@ const Book = ({details}) =>{
             <img src={`${imageSrc}`} alt="" />
             <p>{`${title}`}</p>
             <p>{`${author}`}</p>
+            <Link to="/Details" params={{ Details: "hello" }} >Details</Link>
         </div>
     )
     
