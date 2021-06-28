@@ -24,7 +24,7 @@ const getBooks = async ({queryKey}) => {
     return data.json()
 }
 
-const Books = ({searchQuery}) =>{
+const Books = ({searchQuery, setBookId}) =>{
     const [startPoint , setStartPoint] = useState(0);
     const query = ["books", searchQuery , startPoint];
     const {data , isLoading , isError, error} = useQuery( query , getBooks);
@@ -47,7 +47,13 @@ const Books = ({searchQuery}) =>{
 
         return(
             <div>
+<<<<<<< HEAD
             <Router>
+=======
+                {data.items.map(book =>{
+                    return(<div key={book.id}> <Book setBookId={setBookId} details={book} /> </div>)
+                })}
+>>>>>>> b24ac7e679309ce5412d1a2d61e499ee46bbb29b
 
                 <Switch>
                     <Route exact path="/">
