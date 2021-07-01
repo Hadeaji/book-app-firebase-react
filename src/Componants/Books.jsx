@@ -40,7 +40,7 @@ const Books = ({searchQuery, setBookId}) =>{
         return(
             <div>
                 {data.items.map(book =>{
-                    return(<div key={book.id}> <Book setBookId={setBookId} details={book} /> </div>)
+                    return(<div key={book.id}> <Book details={book} /> </div>)
                 })}
 
                 <button onClick={()=>{setStartPoint(Math.max(startPoint -10, 0))}} disabled={startPoint===0}>Prev</button>
