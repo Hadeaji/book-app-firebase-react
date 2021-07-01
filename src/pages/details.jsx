@@ -1,18 +1,21 @@
 import React, { useEffect,useState } from 'react';
-import cookies from 'react-cookies';
+import { useParams } from 'react-router-dom';
+
 
 const Detail = () => {
-    const id = cookies.load('id')
-    const [data, setData] = useState({})
+
+        const { id } = useParams();
+        const [data,setData] = useState({})
+
         useEffect(()=>{
              const fetching = async () =>{
                  const data = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}`)
-                  setData( await data.json())
+                    setData( await data.json())
              }
              fetching()
         }, [id])
     try{
-        const description = {__html:`${data.volumeInfo.description}`};
+       
         return(
             <div>
                 <h1>
@@ -27,14 +30,15 @@ const Detail = () => {
 
                 </h2>
                 <h3>
-                    {description}
+                    {data.volumeInfo.description.replace(/<[^>]*>/g, '')}
                 </h3>
             </div>
         )
     }
-    catch{
+    catch (e){
         
-        return <></>
+       
+       return<></>
     }
 }
 

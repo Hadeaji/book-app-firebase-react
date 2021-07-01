@@ -2,7 +2,7 @@ import React from "react";
 import {  Link } from "react-router-dom";
 
 
-const Book = ({details, setBookId}) =>{
+const Book = ({details}) =>{
 
     
 
@@ -35,7 +35,7 @@ const Book = ({details, setBookId}) =>{
             <img src={`${imageSrc}`} alt="" />
             <p>{`${title}`}</p>
             <p>{`${author}`}</p>
-            <Link onClick={()=>setBookId(`${details.id}`)} to='/details'>More Details</Link>
+            <Link to={`/details/${details.id}`}>More Details</Link>
         </div>
         
     )
